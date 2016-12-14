@@ -1,0 +1,12 @@
+Trabalho - Parte 1:
+------------
+
+A partir do algoritmo dos métodos abaixo relacionados, implementar um programa em linguagem computacional:
+- Método de Gauss
+- Método da Pivotação
+- Método de Jordan
+- Método de Jacobi
+- Método de Gauss-Seidel
+
+__Entrega: 11/01/17 (quarta)__ - Consiste em entregar o código-fonte e executar o programa nos computadores do laboratório, com os dados a serem informados no dia da apresentação.
+
