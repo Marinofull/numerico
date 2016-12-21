@@ -9,5 +9,5 @@ Repositório destinado para a disciplina MAT174
 - Caio;
 - Felipe;
 - Luan - Gauss;
-- [Marino](mailto:intmarinoreturn0@gmail.com);
+- [Marino](mailto:intmarinoreturn0@gmail.com) - Método de Jacobi;
 - Saulo - Gauss-Seidel.
