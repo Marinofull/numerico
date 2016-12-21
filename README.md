@@ -8,6 +8,6 @@ Repositório destinado para a disciplina MAT174
 
 - Caio;
 - Felipe;
-- Luan;
+- Luan - Gauss;
 - [Marino](mailto:intmarinoreturn0@gmail.com);
 - Saulo - Gauss-Seidel.
