@@ -10,4 +10,4 @@ Repositório destinado para a disciplina MAT174
 - Felipe;
 - Luan;
 - [Marino](mailto:intmarinoreturn0@gmail.com);
-- Saulo.
+- Saulo - Gauss-Seidel.
