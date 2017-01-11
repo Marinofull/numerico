@@ -4,10 +4,10 @@ CFLAGS = -c
 LFLAGS =
 
 Main : $(OBJS)
-	$(CC) $(LFLAGS) $(OBJS) -o Main
+	$(CC) $(LFLAGS) $(OBJS) -o jacobi
 
 Sistemalinear : Sistemalinear.h Sistemalinear.c
 	$(CC) $(CFLAGS) Sistemalinear.c
 
 clean:
-	\rm *.o
+	\rm jacobi *.o
