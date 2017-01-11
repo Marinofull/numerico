@@ -10,4 +10,4 @@ Sistemalinear : Sistemalinear.h Sistemalinear.c
 	$(CC) $(CFLAGS) Sistemalinear.c
 	
 clean:
-	\rm *.o
+	\rm *.o Main
