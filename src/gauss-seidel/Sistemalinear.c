@@ -210,6 +210,26 @@ int gaussSaidel(Matriz *m, float erro, int iteracoes, float solucao[])
 
 		pode_sair = 1;
 
+		/* DEBUG ONLY */
+		int i;
+
+		printf("I:%d ", iteracoes);
+
+		printf("S:");
+		for (i = 0; i < m->tam_matriz; i++)
+		{
+			printf("[ %4.6f ]", solucao[i]);
+		}
+
+		printf(" E:");
+		for (i = 0; i < m->tam_matriz; i++)
+		{
+			printf("[ %4.6f ]", vetor_erro[i]);
+		}
+
+		printf("\n");
+		/* DEBUG ONLY */
+
 		// Verifique se o criterio de erro foi atingido
 		for (li = 0; li < m->tam_matriz; li++)
 		{
@@ -236,6 +256,20 @@ int gaussSaidel(Matriz *m, float erro, int iteracoes, float solucao[])
 	{
 		// Criterio de iteracoes atingido
 		// Solucao obtida divergiu.
+
+		/* DEBUG ONLY */
+		//printf("       _,    _   _    ,_\n");
+		//printf("  .o888P     Y8o8Y     Y888o.\n");
+		//printf(" d88888      88888      88888b\n");
+		//printf("d888888b_  _d88888b_  _d888888b\n");
+		//printf("8888888888888888888888888888888\n");
+		//printf("8888888888888888888888888888888\n");
+		//printf("YJGS8P\"Y888P\"Y888P\"Y888P\"Y8888P\n");
+		//printf(" Y888   '8'   Y8P   '8'   888Y\n");
+		//printf("  '8o          V          o8'\n");
+		//printf("    `                     `\n");
+		///* DEBUG ONLY */
+
 		return FAIL;
 	}
 }
