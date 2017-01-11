@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
         //testeai(&a, &b, &x);
 
         // Faca a chamada da funcao para calcular a solucao do sistema
-        jacobi(&a, &b, &x, erro, iteracoes, solucao);
+        jacobi(&a, &b, &x, erro, a.tam, solucao);
         resultado(&x);
 
         // Encerre o programa e retorne ao terminal

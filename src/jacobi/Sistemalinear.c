@@ -190,12 +190,17 @@ int jacobi(ma *a, mb *b, mb *x, float erro, int iteracoes, float solucao[]){
                     novoVetorX[i] = novoVetorX[i] - (a->chave[i][j] * x->chave[i]);
             novoVetorX[i] = novoVetorX[i] / a->chave[i][i];
             erros[i] = novoVetorX[i] - x->chave[i];
+            //modulo
+            if (erros[i] < 0)
+                erros[i] *= -1;
             x->chave[i] = novoVetorX[i];
         }
         podesair = 1;
         for(i=0; i<iteracoes; i++)
             if (erros[i] > erro)
                 podesair = 0;
+            else
+                podesair = 1;
         if (podesair)
             return OK;
     }
