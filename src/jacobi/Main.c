@@ -11,17 +11,18 @@
 
 #include "Sistemalinear.h"
 
-#define MAX_ARGC 5 // Numero de argumentos de entrada esperado
+#define MAX_ARGC 6 // Numero de argumentos de entrada esperado
 
 int main(int argc, char *argv[])
 {
     char fileA[255];             // String do nome do arquivo
     char fileB[255];             // String do nome do arquivo
+    char fileX[255];             // String do nome do arquivo
     float erro;                  // O algoritmo interrompe a sua execucao apos as solucoes estiverem abaixo da margem de erro informada
     int num_iteracoes;           // O algoritmo interrompe a sua execucao apos n iteracoes
 
     ma a;     // Matriz A
-    mb b;     // Mbtriz B
+    mb b, x;     // Mbtriz B
     float vetor_solucao[MAXSIZE];// Array que guarda a solucao do sistema linear
 
     int pos;
@@ -34,6 +35,7 @@ int main(int argc, char *argv[])
        */
     initializeA(&a);
     initializeB(&b);
+    initializeB(&x);
     for (pos = 0; pos < MAXSIZE; pos++)
         vetor_solucao[pos] = 0;
 
@@ -50,7 +52,7 @@ int main(int argc, char *argv[])
         // Interrompa a execucao caso contrario
         printf("Esperado %d parametros de entrada (apenas %d dado(s)). \n", MAX_ARGC-1, argc-1);
         printf("Para compilar use: make \n");
-        printf("Para executar use: %s <fileA> <fileB> <num_erro> <num_iteracoes> \n", argv[0]);
+        printf("Para executar use: %s <fileA> <fileB> <fileX> <num_erro> <num_iteracoes> \n", argv[0]);
         return FAIL;
     }
     else
@@ -58,8 +60,9 @@ int main(int argc, char *argv[])
         // Salve os parametros passados no console
         strcpy(fileA, argv[1]);
         strcpy(fileB, argv[2]);
-        erro = atof(argv[3]);
-        num_iteracoes = atoi(argv[4]);
+        strcpy(fileX, argv[3]);
+        erro = atof(argv[4]);
+        num_iteracoes = atoi(argv[5]);
     }
 
     /*
@@ -70,8 +73,8 @@ int main(int argc, char *argv[])
        ==============================================================================
        */
 
-        ler(&a, &b, fileA, fileB);
-        testeai(&a, &b);
+        ler(&a, &b, &x, fileA, fileB, fileX);
+        testeai(&a, &b, &x);
 
         // Faca a chamada da funcao para calcular a solucao do sistema
         //jacobi(a, b, erro, iteracoes, solucao);

@@ -66,7 +66,7 @@ int appendB(mb *m, float linha[], int tamlinha)
 //    return OK;
 //}
 
-int ler(ma *a, mb *b, char *fileA, char *fileB){
+int ler(ma *a, mb *b, mb *x, char *fileA, char *fileB, char *fileX){
     FILE *fpa, *fpb;                    // Ponteiro do arquivo de entrada
 
     char linha[255];             // String que guarda a ultima linha lida do arquivo
@@ -129,6 +129,32 @@ int ler(ma *a, mb *b, char *fileA, char *fileB){
         fclose(fpb);                                                    // Feche o arquivo
     }
 
+    //lê o vetor X
+    tam_linha_matriz = 0;
+    for (pos = 0; pos < MAXSIZE; pos++)
+        linha_matriz[pos] = 0;
+
+    fpb = fopen(fileX, "r"); // Abra o arquivo de entrada
+
+    if (!fpb)
+    {
+        printf("Erro: Arquivo de entrada nao existe.\n");
+        return FAIL;
+    }
+    else
+    {
+        fgets(linha, 255, fpa);                                        // Leia uma linha do arquivo
+        while (strcmp(linha, linha_ant))                               // Verifique se essa linha ja foi processada (chegou no fim do arquivo)
+        {
+            ha(linha, linha_matriz, &tam_linha_matriz);
+
+            appendB(x, linha_matriz, tam_linha_matriz); // Insira os elementos extraidos na matriz B
+            strcpy(linha_ant, linha);                                  // Coloque essa linha como ja processada
+            fgets(linha, 255, fpa);                                     // Leia a proxima linha
+        }
+        fclose(fpb);                                                    // Feche o arquivo
+    }
+
     return OK;
 }
 
@@ -151,10 +177,10 @@ int ha(char linha[], float linha_matriz[], int *tam_linha_matriz){
 }
 
 //int gaussJacobi(A, b) {
-int jacobi(ma *a, mb *b, float erro, int iteracoes, float solucao[]){
+int jacobi(ma *a, mb *b, mb *x, float erro, int iteracoes, float solucao[]){
 }
 
-void testeai(ma *a, mb *b){
+void testeai(ma *a, mb *b, mb *x){
     int i, j;
 
     for(i=0; i< a->tam; i++){
@@ -165,6 +191,11 @@ void testeai(ma *a, mb *b){
 
     for(i=0; i< b->tam; i++){
             printf("%f ", b->chave[i]);
+        printf("\n");
+    }
+
+    for(i=0; i< x->tam; i++){
+            printf("%f ", x->chave[i]);
         printf("\n");
     }
 }

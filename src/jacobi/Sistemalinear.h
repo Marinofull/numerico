@@ -35,9 +35,9 @@ int initializeB(mb *m);
 int appendA(ma *m, float linha[], int tamlinha);
 int appendB(mb *m, float linha[], int tamlinha);
 //int swap(Matriz *m, int num_linha1, int num_linha2);
-int ler(ma *a, mb *b, char *fileA, char *fileB);
+int ler(ma *a, mb *b, mb *x, char *fileA, char *fileB, char *fileX);
 int ha(char linha[], float linha_matriz[], int *tam_linha_matriz);
-int jacobi(ma *a, mb *b, float erro, int iteracoes, float solucao[]);
-void testeai(ma *a, mb *b);
+int jacobi(ma *a, mb *b, mb *x, float erro, int iteracoes, float solucao[]);
+void testeai(ma *a, mb *b, mb *x);
 
 #endif // SISTEMALINEAR_H
