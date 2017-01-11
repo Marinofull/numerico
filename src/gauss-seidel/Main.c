@@ -28,11 +28,13 @@ int main(int argc, char *argv[])
 	float tam_linha_matriz = 0;  // Guarda o tamanho da linha lida do arquivo de entrada
 
 	Matriz matriz_extendida;     // Matriz extendida do sistema do arquivo de entrada
-	float vetor_solucao[MAXSIZE];// Array que guarda a solucao do sistema linear      
+	float vetor_solucao[MAXSIZE];// Array que guarda a solucao do sistema linear
 
 	int li = 0;                  // Indice da linha da matriz
 	int co = 0;                  // Indice da coluna da matriz
 	int pos = 0;                 // Indice temporario para o array linha_matriz
+
+	int convergencia = 0; // Flag que indica se houve convergencia na solucao obtida
 
 	/*
 	==============================================================================
@@ -80,7 +82,7 @@ int main(int argc, char *argv[])
 	=====                                                                    =====
 	==============================================================================
 	*/
-	
+
 	// Monte a matriz extendida do sistema a partir desse arquivo
 	fp = fopen(argv[1], "r"); // Abra o arquivo de entrada
 	if (fp == NULL)
@@ -109,10 +111,18 @@ int main(int argc, char *argv[])
 			strcpy(linha_ant, linha);                                  // Coloque essa linha como ja processada
 			fgets(linha, 255, fp);                                     // Leia a proxima linha
 		}
-		fclose(fp);                                                    // Feche o arquivo
+		fclose(fp);                                                  // Feche o arquivo
 
 		// Faca a chamada da funcao para calcular a solucao do sistema
-		gaussSaidel(&matriz_extendida, erro, num_iteracoes, vetor_solucao);
+		convergencia = gaussSaidel(&matriz_extendida, erro, num_iteracoes, vetor_solucao);
+
+		// Verifique se houve divergencia na solucao calculada.
+		// Se houve, rearrume a matriz e recalcule a solucao
+		if (convergencia != 0)
+		{
+			rearrumaMatriz(&matriz_extendida);
+			gaussSaidel(&matriz_extendida, erro, num_iteracoes, vetor_solucao);
+		}
 
 		// Imprima na tela a solucao do sistema apos a execucao da funcao
 		for (pos = 0; pos < matriz_extendida.tam_matriz; pos++)
@@ -120,7 +130,7 @@ int main(int argc, char *argv[])
 			printf("[ %4.6f ]", vetor_solucao[pos]);
 		}
 		printf("\n");
-		
+
 	// Encerre o programa e retorne ao terminal
 	return OK;
 	}

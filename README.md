@@ -6,7 +6,7 @@ Repositório destinado para a disciplina MAT174
 
 ###Equipe:
 
-- Caio;
+- Caio - Gauss-Jordan;
 - Felipe - Pivotação;
 - Luan - Gauss;
 - [Marino](mailto:intmarinoreturn0@gmail.com) - Método de Jacobi;

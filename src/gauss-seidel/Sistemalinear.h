@@ -28,7 +28,10 @@ typedef struct listamatriz
 
 int initializeMatriz(Matriz *m);
 int append(Matriz *m, float linha[], int tamlinha);
-int swap(Matriz *m, int num_linha1, int num_linha2);
+int swapLine(Matriz *m, int num_linha1, int num_linha2);
+int swapCol(Matriz *m, int num_linha1, int num_linha2);
+int rearrumaMatriz(Matriz *m);
+int quicksort(float vetor[], int vetor_indice[], int esquerda, int direita);
 int gaussSaidel(Matriz *m, float erro, int iteracoes, float solucao[]);
 
 #endif // SISTEMALINEAR_H
