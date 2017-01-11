@@ -42,15 +42,17 @@ void gauss()
       // print();
   }
 void solution(){
-  x[omatrix]=matrix[omatrix][omatrix+1]/matrix[omatrix][omatrix ];
+
+  x[omatrix]=matrix[omatrix][omatrix+1]/matrix[omatrix][omatrix];
   for(int i=omatrix-1; i>=1; i--)
       {
-          int sum=0;
+          float sum=0.0;
           for(int j=i+1; j<=omatrix; j++)
           {
               sum=sum+matrix[i][j] * x[j];
           }
           x[i]=(matrix[i][omatrix+1]-sum)/matrix[i][i];
+          printf("%f\n",x[i]);
       }
 
       for(int i=1; i<=omatrix; i++)
