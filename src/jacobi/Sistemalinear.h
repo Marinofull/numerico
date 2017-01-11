@@ -38,6 +38,7 @@ int appendB(mb *m, float linha[], int tamlinha);
 int ler(ma *a, mb *b, mb *x, char *fileA, char *fileB, char *fileX);
 int ha(char linha[], float linha_matriz[], int *tam_linha_matriz);
 int jacobi(ma *a, mb *b, mb *x, float erro, int iteracoes, float solucao[]);
+void resultado(mb *x);
 void testeai(ma *a, mb *b, mb *x);
 
 #endif // SISTEMALINEAR_H

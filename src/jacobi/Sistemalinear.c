@@ -178,6 +178,29 @@ int ha(char linha[], float linha_matriz[], int *tam_linha_matriz){
 
 //int gaussJacobi(A, b) {
 int jacobi(ma *a, mb *b, mb *x, float erro, int iteracoes, float solucao[]){
+    float novoVetorX[iteracoes], erros[iteracoes];
+    int podesair = 0;
+
+    for(;;){
+        int i, j;
+        for(i=0; i<iteracoes; i++){
+            novoVetorX[i]=b->chave[i];
+            for(j=0; j<iteracoes; j++)
+                if (i!=j)
+                    novoVetorX[i] = novoVetorX[i] - (a->chave[i][j] * x->chave[i]);
+            novoVetorX[i] = novoVetorX[i] / a->chave[i][i];
+            erros[i] = novoVetorX[i] - x->chave[i];
+            x->chave[i] = novoVetorX[i];
+        }
+        podesair = 1;
+        for(i=0; i<iteracoes; i++)
+            if (erros[i] > erro)
+                podesair = 0;
+        if (podesair)
+            return OK;
+    }
+
+    return OK;
 }
 
 void testeai(ma *a, mb *b, mb *x){
@@ -196,6 +219,14 @@ void testeai(ma *a, mb *b, mb *x){
 
     for(i=0; i< x->tam; i++){
             printf("%f ", x->chave[i]);
+        printf("\n");
+    }
+}
+
+void resultado(mb *x){
+    int i;
+    for(i=0; i< x->tam; i++){
+            printf("[%4.6f] ", x->chave[i]);
         printf("\n");
     }
 }

@@ -19,11 +19,11 @@ int main(int argc, char *argv[])
     char fileB[255];             // String do nome do arquivo
     char fileX[255];             // String do nome do arquivo
     float erro;                  // O algoritmo interrompe a sua execucao apos as solucoes estiverem abaixo da margem de erro informada
-    int num_iteracoes;           // O algoritmo interrompe a sua execucao apos n iteracoes
+    int iteracoes;           // O algoritmo interrompe a sua execucao apos n iteracoes
 
     ma a;     // Matriz A
     mb b, x;     // Mbtriz B
-    float vetor_solucao[MAXSIZE];// Array que guarda a solucao do sistema linear
+    float solucao[MAXSIZE];// Array que guarda a solucao do sistema linear
 
     int pos;
     /*
@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
     initializeB(&b);
     initializeB(&x);
     for (pos = 0; pos < MAXSIZE; pos++)
-        vetor_solucao[pos] = 0;
+        solucao[pos] = 0;
 
     /*
        ==============================================================================
@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
         strcpy(fileB, argv[2]);
         strcpy(fileX, argv[3]);
         erro = atof(argv[4]);
-        num_iteracoes = atoi(argv[5]);
+        iteracoes = atoi(argv[5]);
     }
 
     /*
@@ -74,17 +74,11 @@ int main(int argc, char *argv[])
        */
 
         ler(&a, &b, &x, fileA, fileB, fileX);
-        testeai(&a, &b, &x);
+        //testeai(&a, &b, &x);
 
         // Faca a chamada da funcao para calcular a solucao do sistema
-        //jacobi(a, b, erro, iteracoes, solucao);
-
-        // Imprima na tela a solucao do sistema apos a execucao da funcao
-        //for (pos = 0; pos < matriz_extendida.tam; pos++)
-        //{
-        //    printf("[ %4.6f ]", vetor_solucao[pos]);
-        //}
-        //printf("\n");
+        jacobi(&a, &b, &x, erro, iteracoes, solucao);
+        resultado(&x);
 
         // Encerre o programa e retorne ao terminal
         return OK;
