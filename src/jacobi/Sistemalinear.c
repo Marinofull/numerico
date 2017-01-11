@@ -176,12 +176,50 @@ int ha(char linha[], float linha_matriz[], int *tam_linha_matriz){
     return OK;
 }
 
-//int gaussJacobi(A, b) {
+mb* jacobi(ma *a, mb *b, mb *x, float erro, int iteracoes, float solucao[]){
+    int continuar = 1, ni = 0, i, j, n = a->tam, soma;
+    float nx[n], erros[n];
+
+    while (continuar && ni<iteracoes){
+        for (i =0; i<n; i++){
+            soma = 0;
+            for (j=0; j<n; j++){
+                if (i!=j)
+                    soma += a->chave[i][j] * x->chave[j] / a->chave[i][i];
+                nx[i] = (b->chave[i]/a->chave[i][i]) - soma;
+            }
+            erros[i] = nx[i] - x->chave[i];
+            //modulo do erro
+            if (erros[i] < 0)
+                erros[i] = erros[i] * -1;
+        }
+        for (i=0; i<n; i++)
+            if (erros[i] < erro)
+                continuar = 0;
+        ni++;
+    }
+
+    mb *res;
+    res = (mb*) malloc(sizeof(mb));
+    initializeB(res);
+    for (i=0; i < a->tam; i++)
+        res->chave[i] = nx[i];
+    res->tam = a->tam;
+    printf("rodei %d vezes\n", ni);
+
+    return res;
+}
+
+/*
 int jacobi(ma *a, mb *b, mb *x, float erro, int iteracoes, float solucao[]){
     float novoVetorX[iteracoes], erros[iteracoes];
-    int podesair = 0;
+    int continuar = 1;
 
-    for(;;){
+    //TODO
+    //iteracoes = a->tam;
+    //rever se o N do pseudocodigo é o numero de equacoes ou iteracoes
+    //int qtd=0;
+    while(continuar){
         int i, j;
         for(i=0; i<iteracoes; i++){
             novoVetorX[i]=b->chave[i];
@@ -190,18 +228,31 @@ int jacobi(ma *a, mb *b, mb *x, float erro, int iteracoes, float solucao[]){
                     novoVetorX[i] = novoVetorX[i] - (a->chave[i][j] * x->chave[i]);
             novoVetorX[i] = novoVetorX[i] / a->chave[i][i];
             erros[i] = novoVetorX[i] - x->chave[i];
+
+            //modulo do erro
+            if (erros[i] < 0)
+                erros[i] = erros[i] * -1;
+
             x->chave[i] = novoVetorX[i];
         }
-        podesair = 1;
+
         for(i=0; i<iteracoes; i++)
-            if (erros[i] > erro)
-                podesair = 0;
-        if (podesair)
-            return OK;
+        printf("erros[%d] %f\n", i, erros[i]);
+        printf("erro %f\n", erro);
+        //if (qtd > 5)
+        //    return 0;
+
+        for(i=0; i<iteracoes; i++)
+            if (erros[i] < erro)
+                continuar = 0;
+        //if (podesair)
+        //    return OK;
+        //qtd++;
     }
 
     return OK;
 }
+*/
 
 void testeai(ma *a, mb *b, mb *x){
     int i, j;
