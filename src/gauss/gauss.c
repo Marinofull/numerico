@@ -57,7 +57,7 @@ void solution(){
 
       for(int i=1; i<=omatrix; i++)
       {
-          printf("\nx%d=%f\t",i,x[i]); /* x1, x2, x3 are the required solutions*/
+          printf("\nx%d=%f\t",i,x[i]); 
       }
 }
 void print()
