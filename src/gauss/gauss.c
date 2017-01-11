@@ -52,7 +52,7 @@ void solution(){
               sum=sum+matrix[i][j] * x[j];
           }
           x[i]=(matrix[i][omatrix+1]-sum)/matrix[i][i];
-          printf("%f\n",x[i]);
+          //printf("%f\n",x[i]);
       }
 
       for(int i=1; i<=omatrix; i++)
