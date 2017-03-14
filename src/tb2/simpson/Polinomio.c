@@ -20,13 +20,29 @@ int inicializaFatorEquacao(FatorEquacao *novoFator, float novoCoeficiente, float
 float potencia(float x, int n)
 {
 	int i;
-	int resultado;
+	float resultado;
 
-	resultado = 1;
+	resultado = 1.0;
 
-	for (i = 0; i < n; i++)
+	if (n == 0)
 	{
-		resultado = resultado * x;
+		resultado = 1.0;
+	}
+	else if (n > 0)
+	{
+		for (i = 0; i < n; i++)
+		{
+			resultado = resultado * x;
+		}
+	}
+	else
+	{
+		n = n * (-1);
+		for (i = 0; i < n; i++)
+		{
+			resultado = resultado * x;
+		}
+		resultado = 1/resultado;
 	}
 
 	return resultado;
@@ -47,29 +63,35 @@ float simpson1(FatorEquacao pol_integral[], int a, int b, int n, int tam_pol_int
 	Retorna o resultado do calculo, ou zero (seguido de mensagem de erro) em caso de falha
 	*/
 
-	float somatorio; // Somatorio das imagens
-	float h; // "Altura" do trapezio
-	float x; // Ponto do dominio da funcao
-	float c; // Coeficiente da formula de simpson
-	float y; // Imagem de x na funcao
-	float resultado; // Resultado da integral
+	float somatorio; // Somatorio das imagens. Aplicado na formula para determinar o valor da integral
+	float h; // "Altura" do trapezio. Usado para incrementar x a cada iteração do algoritmo
+	float x; // Ponto do dominio da funcao. Usado para determinar imagens para somatorio
+	float c; // Coeficiente da formula de simpson. Usado para determinar valores para somatorio
+	float y; // Imagem de x na funcao. Usado para determinar valores para somatorio
+	float resultado; // Resultado da integral, obtido pela aplicacao da formula de Simpson 1/3
 
-	int i;
-	int pos;
+	int i;   // Indice que registra o subintervalo de trabalho atual
+	int pos; // Indice que navega pelo array pol_integral
 
 	// Verifique se n eh par:
 	if (n % 2 == 0)
 	{
-		// Calcule h
+		// Se n for par, prossiga com a execucao do algoritmo:
+		// 1. Determine h
 		h = ((float)b - (float)a) / (float)n;
 
-		// Calcule o somatorio
+		// 2. Calcule o somatorio para a formula de Simpson 1/3
 		somatorio = 0;
 		x = (float)a;
 		c = 0;
 
+		// Calcule os "fragmentos" desse somatorio
 		for (i = 0; i < n+1; i++)
 		{
+			// Determine o valor do coeficiente "c" conforme o valor da iteracao atual
+			// Iteracao inicial/final (i = 0 ou i = n): c := 1
+			// Iteracao par           (i % 2 = 0)     : c := 2
+			// Iteracao impar         (else)          : c := 4
 			if (i == 0 || i == n)
 			{
 				c = 1;
@@ -82,21 +104,28 @@ float simpson1(FatorEquacao pol_integral[], int a, int b, int n, int tam_pol_int
 			{
 				c = 4;
 			}
+
+			// Determine o valor de f(x) na iteracao atual, conforme valores de "x" e "c"
 			y = 0;
 			for (pos = 0; pos < tam_pol_integral; pos++)
 			{
 				y = pol_integral[pos].coeficiente * potencia(x, pol_integral[pos].expoente);
 			}
+
+			// Adicione o valor encontrado ao somatorio
 			somatorio += y * c;
+
+			// Incremente x e prossiga para a proxima iteracao
 			x += h;
 		}
 
-		// Aplique a formula de Simpson
+		// Aplique a formula de Simpson e retorne o valor da integral encontrado
 		resultado = (h * somatorio) / 3;
 		return resultado;
 	}
 	else
 	{
+		// Se n nao for par, encerre imediatamente com mensagem de erro
 		printf("Erro de execucao: numero de subintervalos deve ser par. \n");
 		return 0;
 	}
