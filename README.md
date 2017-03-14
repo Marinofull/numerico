@@ -1,10 +1,10 @@
 Repositório destinado para a disciplina MAT174
 ---------------
 
-###Padrão _input/output_
+### Padrão _input/output_
 
 
-###Equipe (1o Trabalho):
+### Equipe (1o Trabalho):
 
 - Caio - Gauss-Jordan;
 - Felipe - Pivotação;
@@ -13,7 +13,7 @@ Repositório destinado para a disciplina MAT174
 - Saulo - Gauss-Seidel;
 
 
-###Equipe (2o Trabalho):
+### Equipe (2o Trabalho):
 
 - Caio;
 - Felipe;
