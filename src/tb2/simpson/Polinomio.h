@@ -28,6 +28,6 @@ typedef struct par
 
 int inicializaFatorEquacao(FatorEquacao *novoFator, float novoCoeficiente, float novoExpoente);
 float potencia(float x, int n);
-float simpson1(FatorEquacao pol_integral[], int a, int b, int n, int tam_pol_integral);
+float simpson1(FatorEquacao pol_integral[], float a, float b, int n, int tam_pol_integral);
 
 #endif // POLINOMIO_H

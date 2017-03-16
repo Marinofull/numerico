@@ -20,8 +20,8 @@ int main(int argc, char *argv[])
 {
 	FILE *fp;
 	char nome_arquivo[256];
-	int intA;
-	int intB;
+	float intA;
+	float intB;
 	int num_intervalos;
 
 	char linha[256];
@@ -60,8 +60,8 @@ int main(int argc, char *argv[])
 	{
 		// Salve os parametros passados no console
 		strcpy(nome_arquivo, argv[1]);
-		intA = atoi(argv[2]);
-		intB = atoi(argv[3]);
+		intA = atof(argv[2]);
+		intB = atof(argv[3]);
 		num_intervalos = atoi(argv[4]);
 
 	}

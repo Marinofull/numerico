@@ -48,7 +48,7 @@ float potencia(float x, int n)
 	return resultado;
 }
 
-float simpson1(FatorEquacao pol_integral[], int a, int b, int n, int tam_pol_integral)
+float simpson1(FatorEquacao pol_integral[], float a, float b, int n, int tam_pol_integral)
 {
 	/*
 	Calcula pol_integral usando a regra de Simpson 1/3 (ou 1a Regra de Simpson)
