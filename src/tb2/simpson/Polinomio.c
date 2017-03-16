@@ -83,7 +83,7 @@ float simpson1(FatorEquacao pol_integral[], int a, int b, int n, int tam_pol_int
 		// 2. Calcule o somatorio para a formula de Simpson 1/3
 		somatorio = 0;
 		x = (float)a;
-		c = 0;
+		c = 0.0;
 
 		// Calcule os "fragmentos" desse somatorio
 		for (i = 0; i < n+1; i++)
@@ -94,23 +94,27 @@ float simpson1(FatorEquacao pol_integral[], int a, int b, int n, int tam_pol_int
 			// Iteracao impar         (else)          : c := 4
 			if (i == 0 || i == n)
 			{
-				c = 1;
+				c = 1.0;
 			}
 			else if (i % 2 == 0)
 			{
-				c = 2;
+				c = 2.0;
 			}
 			else
 			{
-				c = 4;
+				c = 4.0;
 			}
 
 			// Determine o valor de f(x) na iteracao atual, conforme valores de "x" e "c"
-			y = 0;
+			y = 0.0;
 			for (pos = 0; pos < tam_pol_integral; pos++)
 			{
-				y = pol_integral[pos].coeficiente * potencia(x, pol_integral[pos].expoente);
+				y += pol_integral[pos].coeficiente * potencia(x, pol_integral[pos].expoente);
 			}
+
+			/* === DEBUG ONLY === */
+			printf("| I = %d | | X = %f | | Y = %f | | C = %f | \n", i, x, y, c);
+			/* === DEBUG ONLY === */
 
 			// Adicione o valor encontrado ao somatorio
 			somatorio += y * c;
