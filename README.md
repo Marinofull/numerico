@@ -18,5 +18,5 @@ Repositório destinado para a disciplina MAT174
 - Caio;
 - Felipe;
 - Luan;
-- [Marino](mailto:intmarinoreturn0@gmail.com);
+- [Marino](mailto:intmarinoreturn0@gmail.com) - Interpolação de Lagrange;
 - Saulo - 1a Regra de Simpson;
