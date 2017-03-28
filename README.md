@@ -16,7 +16,7 @@ Repositório destinado para a disciplina MAT174
 ### Equipe (2o Trabalho):
 
 - Caio;
-- Felipe;
+- Felipe - Extrapolação de Richardson;
 - Luan - Quadratica Gaussiana;
 - [Marino](mailto:intmarinoreturn0@gmail.com) - Interpolação de Lagrange;
 - Saulo - 1a Regra de Simpson;
