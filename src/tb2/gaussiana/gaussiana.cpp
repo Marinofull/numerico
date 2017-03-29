@@ -75,7 +75,7 @@ int main()
 	scanf("%d", &a);
 	printf("Extremo direito do intervalo: ");
 	scanf("%d", &b);
-	Pi = atan2(1, 1) * 4;
+	Pi = 3.14;
 
 	lege_coef();
 	lege_roots();
@@ -88,6 +88,6 @@ int main()
 	for (i = 0; i < N; i++)
 		printf(" %g", weight[i]);
 
-	printf("\nIntegracao Exp(x) sobre [%d, %d]:\n\t%10.8f,\n",a,b,-lege_inte(gaussiana, a, b));
+	printf("\nIntegracao sobre [%d, %d]:\n\t%10.8f,\n",a,b,-lege_inte(gaussiana, a, b));
 	return 0;
 }
