@@ -2,40 +2,47 @@
 
 using namespace std;
 
-int main()
-{
+int main() {
     int n,i,j;
-    float x[10],f[10],a,sum=0,mult;
+    double x[10],f[10],a,sum,mult;
+    char op;
 
-    cout << "Numero de pontos: ";
-    cin >> n;
+    do {
+    	sum = 0;
 
-    cout<<"Valores X: ";
-    for(i=0;i<n;i++)
-		cin>>x[i];
+	    cout << "Numero de pontos: ";
+	    cin >> n;
 
-	cout<<"Valores f(X): ";
-	for(i=0;i<n;i++)
-		cin>>f[i];
+	    cout<<"Valores X: ";
+	    for(i=0;i<n;i++)
+			cin>>x[i];
 
-    cout<<"X para calcular: ";
-    cin>>a;
+		cout<<"Valores f(X): ";
+		for(i=0;i<n;i++)
+			cin>>f[i];
 
-    for(j=0;j<n-1;j++) {
-        for(i=n-1;i>j;i--)
-            f[i]=(f[i]-f[i-1])/(x[i]-x[i-j-1]);
-    }
+	    cout<<"X para calcular: ";
+	    cin>>a;
 
-    for(i=n-1;i>=0;i--) {
-        mult=1;
-        for(j=0;j<i;j++)
-            mult*=(a-x[j]);
+	    for(j=0;j<n-1;j++) {
+	        for(i=n-1;i>j;i--)
+	            f[i]=(f[i]-f[i-1])/(x[i]-x[i-j-1]);
+	    }
 
-        mult*=f[j];
-        sum+=mult;
-    }
+	    for(i=n-1;i>=0;i--) {
+	        mult=1;
+	        for(j=0;j<i;j++)
+	            mult*=(a-x[j]);
 
-    cout << "Resultado: " << sum << endl;
+	        mult*=f[j];
+	        sum+=mult;
+	    }
+
+	    cout << "Resultado: " << sum << endl;
+
+	    cout << "Deseja sair(s/n): ";
+	    cin >> op;
+	} while (op != 's');
 
     return 0;
 }
