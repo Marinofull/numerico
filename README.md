@@ -15,7 +15,7 @@ Repositório destinado para a disciplina MAT174
 
 ### Equipe (2o Trabalho):
 
-- Caio;
+- Caio - Extrapolação de Richardson;
 - Felipe - Interpolação com uso de diferenças divididas
 - Luan - Quadratica Gaussiana;
 - [Marino](mailto:intmarinoreturn0@gmail.com) - Interpolação de Lagrange;
