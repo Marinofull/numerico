@@ -9,10 +9,6 @@ double lroots[N];
 double weight[N];
 double lcoef[N + 1][N + 1] = {{0}};
 
-double F(double x) {
-	return exp(x);
-}
-
 void lege_coef()
 {
 	int n, i;
@@ -89,6 +85,6 @@ int main()
 	for (i = 0; i < N; i++)
 		printf(" %g", weight[i]);
 
-	printf("\nIntegracao Exp(x) sobre [-%d, %d]:\n\t%10.8f,\n"		"Valor Atual\n\t%10.8f\n",a,b,lege_inte(F, a, b), F(a) - F(-b));
+	printf("\nIntegracao Exp(x) sobre [-%d, %d]:\n\t%10.8f,\n"		"Valor Atual\n\t%10.8f\n",a,b,lege_inte(exp, -a, b), exp(a) - exp(-b));
 	return 0;
 }
