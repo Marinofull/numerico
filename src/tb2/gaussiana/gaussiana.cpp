@@ -3,7 +3,7 @@
 #include <cmath> // ou <math.h>
 #include <iostream>
 #include <cstdlib>
-#define N 5
+#define N 6
 double Pi;
 double lroots[N];
 double weight[N];
@@ -62,6 +62,9 @@ double lege_inte(double (*f)(double), double a, double b)
 		sum += weight[i] * f(c1 * lroots[i] + c2);
 	return c1 * sum;
 }
+double gaussiana(double x) {
+	return	((log(x)+(x*x))/((x+3)*(x+3)));
+}
 
 int main()
 {
@@ -85,6 +88,6 @@ int main()
 	for (i = 0; i < N; i++)
 		printf(" %g", weight[i]);
 
-	printf("\nIntegracao Exp(x) sobre [-%d, %d]:\n\t%10.8f,\n"		"Valor Atual\n\t%10.8f\n",a,b,lege_inte(exp, -a, b), exp(a) - exp(-b));
+	printf("\nIntegracao Exp(x) sobre [%d, %d]:\n\t%10.8f,\n",a,b,-lege_inte(gaussiana, a, b));
 	return 0;
 }
